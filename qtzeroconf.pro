@@ -7,9 +7,13 @@ include($$PWD/qtzeroconf.pri)
 TEMPLATE = lib
 TARGET = $$qtLibraryTarget(QtZeroConf$$QT_LIBINFIX)
 CONFIG += module create_prl
+CONFIG-=android_install
 DEFINES+= QT_BUILD_ZEROCONF_LIB
 mac:QMAKE_FRAMEWORK_BUNDLE_NAME = $$TARGET
 
-target.path = $$PREFIX/lib
+android {
+LIBS += -L$$(ANDROID_LIBCRYSTAX_LIBDIR)
+}
 
-INSTALLS += target
+
+target.path = $$PREFIX/lib
